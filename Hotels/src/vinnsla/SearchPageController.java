@@ -5,6 +5,8 @@
  */
 package vinnsla;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Bjartur
@@ -12,8 +14,8 @@ package vinnsla;
 public class SearchPageController {
     
     private SearchController searchController;
-    private Hotel[] hotelsFound;
-    private Hotel hotelToBook;
+    private ArrayList <Hotels> hotelsFound;
+    private Hotels hotelToBook;
     
     public void searchHandler(SearchQuery searchQuery) {
         //Þarf að útfæra
