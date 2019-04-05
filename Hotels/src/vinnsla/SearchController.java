@@ -15,10 +15,11 @@ class SearchController {
     
     private API data;
     
-    private ArrayList <Hotels> search(SearchQuery searchquery) {
+    private ArrayList <Hotel> search(SearchQuery searchquery) {
         // þarf að útfæra
         
-        ArrayList<Hotels> hotels = new ArrayList <Hotels>();
+        ArrayList<Hotel> hotels = new ArrayList<Hotel>();
+        //ArrayList<Hotel> hotels = data.getAvailableHotels(searchquery);
         return hotels;
     }
 }

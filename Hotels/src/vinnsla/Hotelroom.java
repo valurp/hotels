@@ -10,7 +10,7 @@ package vinnsla;
  * @author Bjartur
  */
 class Hotelroom {
-    private Hotels hotel;
+    private Hotel hotel;
     private int hotelroomId;
     private int oneNightPrice;
     private boolean available;
@@ -21,11 +21,11 @@ class Hotelroom {
         this.oneNightPrice = oneNightPrice;
     }
 
-    public Hotels getHotel() {
+    public Hotel getHotel() {
         return hotel;
     }
 
-    public void setHotel(Hotels hotel) {
+    public void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }
 
