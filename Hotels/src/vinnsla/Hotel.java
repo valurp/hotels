@@ -19,7 +19,7 @@ public class Hotel {
     private String email;
     private String phoneNumber;
     private boolean breakfastBool;
-        private int rating;
+    private int rating;
 
     public Hotel(String name, String city, String email, String phoneNumber, boolean breakfastBool, int rating) {
         this.name = name;

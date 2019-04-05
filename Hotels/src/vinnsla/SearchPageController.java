@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class SearchPageController {
     
     private SearchController searchController;
-    private ArrayList <Hotels> hotelsFound;
-    private Hotels hotelToBook;
+    private ArrayList <Hotel> hotelsFound;
+    private Hotel hotelToBook;
     
     public void searchHandler(SearchQuery searchQuery) {
         //Þarf að útfæra
