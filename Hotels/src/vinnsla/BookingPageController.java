@@ -11,12 +11,13 @@ package vinnsla;
  */
 public class BookingPageController {
     
-    public BookingController bookingcontroller;
+    public BookingController bookingController;
     
     public boolean tryToBook(Booking booking) {
         //þarf að útfæra
         
-        boolean something = true;
-        return something;
+        boolean booked = true;
+        //boolean booked = bookingController.book(booking);
+        return booked;
     }
 }

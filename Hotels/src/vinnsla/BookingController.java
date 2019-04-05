@@ -16,7 +16,8 @@ public class BookingController {
     public boolean book(Booking booking) {
         //þarf að útfæra
         
-        boolean something = true;
-        return something;
+        boolean saved = true;
+        //boolean saved = data.saveBooking(booking);
+        return saved;
     }
 }
