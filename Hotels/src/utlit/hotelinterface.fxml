@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vinnsla.Hotel">
+<AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utlit.HotelinterfaceController">
    <children>
       <AnchorPane layoutX="-1.0" prefHeight="499.0" prefWidth="534.0">
          <children>
@@ -20,8 +20,12 @@
                            <children>
                               <MenuButton fx:id="Cities" mnemonicParsing="false" text="Cities">
                                 <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                                  <MenuItem fx:id="akureyri" mnemonicParsing="false" text="Akureyri" />
+                                  <MenuItem fx:id="reykjavik" mnemonicParsing="false" text="Reykjavik" />
+                                    <MenuItem fx:id="borgarnes" mnemonicParsing="false" text="Borgarnes" />
+                                    <MenuItem fx:id="husavik" mnemonicParsing="false" text="Húsavik" />
+                                    <MenuItem fx:id="keflavik" mnemonicParsing="false" text="Keflavik" />
+                                    <MenuItem fx:id="egilsstadir" mnemonicParsing="false" text="Egilsstaðir" />
                                 </items>
                               </MenuButton>
                               <Button fx:id="searchbutton" mnemonicParsing="false" text="Search" />
