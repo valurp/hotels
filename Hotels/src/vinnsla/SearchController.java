@@ -15,7 +15,7 @@ class SearchController {
     
     private API data;
     
-    private ArrayList <Hotel> search(SearchQuery searchquery) {
+    public ArrayList <Hotel> search(SearchQuery searchquery) {
         // þarf að útfæra
         
         ArrayList<Hotel> hotels = new ArrayList<Hotel>();
