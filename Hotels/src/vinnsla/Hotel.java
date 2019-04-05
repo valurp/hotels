@@ -24,8 +24,77 @@ import javafx.stage.Stage;
  * @author Valur Páll Stefán Valsson <vpv1@hi.is>
  * Háskóli Íslands
  */
-public class Hotels extends Application {
+public class Hotel extends Application {
 
+    private Hotelroom[] hotelrooms;
+    private String name;
+    private String city;
+    private String email;
+    private String phoneNumber;
+    private boolean breakfastBool;
+    
+    public Hotel(String name) {
+        this.name = name;
+    }
+
+    public Hotelroom[] getHotelrooms() {
+        return hotelrooms;
+    }
+
+    public void setHotelrooms(Hotelroom[] hotelrooms) {
+        this.hotelrooms = hotelrooms;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public boolean isBreakfastBool() {
+        return breakfastBool;
+    }
+
+    public void setBreakfastBoolean(boolean breakfastBool) {
+        this.breakfastBool = breakfastBool;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+    private int rating;
+    
+    
     @FXML
     private DatePicker arrDate;
     @FXML
