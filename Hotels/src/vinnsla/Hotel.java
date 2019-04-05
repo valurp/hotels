@@ -33,9 +33,7 @@ public class Hotel extends Application {
     private String phoneNumber;
     private boolean breakfastBool;
     
-    public Hotel(String name) {
-        this.name = name;
-    }
+
 
     public Hotelroom[] getHotelrooms() {
         return hotelrooms;
