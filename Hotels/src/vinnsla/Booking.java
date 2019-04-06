@@ -6,13 +6,14 @@
 package vinnsla;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
  * @author Bjartur
  */
 public class Booking {
-    private Hotelroom[] hotelrooms;
+    private ArrayList <Hotelroom> hotelrooms;
     private int bookingId;
     private int numberOfGuests;
     private LocalDate checkInTime;
@@ -26,14 +27,14 @@ public class Booking {
         this.checkOutTime = checkOutTime;
         this.customer = customer;
     }
-
+    
     
 
-    public Hotelroom[] getHotelrooms() {
+    public ArrayList<Hotelroom> getHotelrooms() {
         return hotelrooms;
     }
 
-    public void setHotelrooms(Hotelroom[] hotelrooms) {
+    public void setHotelrooms(ArrayList<Hotelroom> hotelrooms) {
         this.hotelrooms = hotelrooms;
     }
 

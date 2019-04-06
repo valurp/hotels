@@ -5,6 +5,8 @@
  */
 package vinnsla;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Bjartur
@@ -13,10 +15,11 @@ class SearchController {
     
     private API data;
     
-    private Hotel[] search(SearchQuery searchquery) {
+    public ArrayList <Hotel> search(SearchQuery searchquery) {
         // þarf að útfæra
         
-        Hotel[] hotels = new Hotel[1];
+        ArrayList<Hotel> hotels = new ArrayList<Hotel>();
+        //ArrayList<Hotel> hotels = data.getAvailableHotels(searchquery);
         return hotels;
     }
 }

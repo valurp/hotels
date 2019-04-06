@@ -6,7 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="499.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utlit.HotelinterfaceController">
+
+<AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vinnsla.Hotels">
+
    <children>
       <AnchorPane layoutX="-1.0" prefHeight="499.0" prefWidth="534.0">
          <children>

@@ -3,43 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package vinnsla;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.RadioButton;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+import java.util.ArrayList;
+
 /**
  *
- * @author Valur Páll Stefán Valsson <vpv1@hi.is>
- * Háskóli Íslands
+ * @author Bjartur
  */
-public class Hotel extends Application {
-
-    private Hotelroom[] hotelrooms;
+public class Hotel {
+    
+    private ArrayList<Hotelroom> hotelrooms;
     private String name;
     private String city;
     private String email;
     private String phoneNumber;
     private boolean breakfastBool;
-    
+    private int rating;
 
+    public Hotel(String name, String city, String email, String phoneNumber, boolean breakfastBool, int rating) {
+        this.name = name;
+        this.city = city;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.breakfastBool = breakfastBool;
+        this.rating = rating;
+    }
 
-    public Hotelroom[] getHotelrooms() {
+    public ArrayList<Hotelroom> getHotelrooms() {
         return hotelrooms;
     }
 
-    public void setHotelrooms(Hotelroom[] hotelrooms) {
+    public void setHotelrooms(ArrayList<Hotelroom> hotelrooms) {
         this.hotelrooms = hotelrooms;
     }
 
@@ -90,36 +85,5 @@ public class Hotel extends Application {
     public void setRating(int rating) {
         this.rating = rating;
     }
-    private int rating;
     
-    
-    @FXML
-    private DatePicker arrDate;
-    @FXML
-    private DatePicker depDate;
-    @FXML
-    private MenuButton Cities;
-    @FXML
-    private RadioButton breakfast;
-    @FXML
-    private Button searchbutton;
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("hotelinterface.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        primaryStage.setResizable(false);
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
-
