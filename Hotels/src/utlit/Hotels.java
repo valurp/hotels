@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package vinnsla;
+package utlit;
 
 import java.util.ArrayList;
 import javafx.application.Application;
