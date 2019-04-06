@@ -21,7 +21,7 @@ public class API {
         pass = "user";
     }
     
-    /*Drög að getAvailableHotels, tekur núna bara við streng sem fyrirspurnin og nafn dálksins sem á að  skila og skilar ArrayList af strengjum*/
+    /*Drög að getAvailableHotels, tekur núna bara við streng sem fyrirspurnin og nafn dálksins sem á að  skila og skilar ArrayList af strengjum */
     public ArrayList<String> getAvailableHotels(String query, String queryResult) throws SQLException {
         ArrayList<String> resultAL = new ArrayList<String>();
         
