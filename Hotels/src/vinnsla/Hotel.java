@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Hotel {
     
-    private ArrayList<Hotelroom> hotelrooms; vbcx
+    private ArrayList<Hotelroom> hotelrooms;
     private String name;
     private String city;
     private String email;
