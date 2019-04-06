@@ -6,13 +6,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+
 <AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vinnsla.Hotels">
+
    <children>
       <AnchorPane layoutX="-1.0" prefHeight="499.0" prefWidth="534.0">
          <children>
-            <HBox layoutX="8.0" layoutY="6.0" prefHeight="492.0" prefWidth="572.0">
+            <HBox layoutX="8.0" layoutY="6.0" prefHeight="492.0" prefWidth="527.0">
                <children>
-                  <VBox prefHeight="708.0" prefWidth="200.0">
+                  <VBox prefHeight="91.0" prefWidth="189.0">
                      <children>
                         <DatePicker fx:id="arrDate" />
                         <DatePicker fx:id="depDate" />
@@ -20,8 +22,10 @@
                            <children>
                               <MenuButton fx:id="Cities" mnemonicParsing="false" text="Cities">
                                 <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                                  <MenuItem fx:id="akureyri" mnemonicParsing="false" text="Akureyri" />
+                                  <MenuItem fx:id="reykjavik" mnemonicParsing="false" text="Reykjavik" />
+                                    <MenuItem fx:id="keflavik" mnemonicParsing="false" text="Keflavik" />
+                                    <MenuItem fx:id="egilsstadir" mnemonicParsing="false" text="Egilsstaðir" />
                                 </items>
                               </MenuButton>
                               <Button fx:id="searchbutton" mnemonicParsing="false" text="Search" />
@@ -30,6 +34,7 @@
                      </children>
                   </VBox>
                   <RadioButton fx:id="breakfast" mnemonicParsing="false" text="Breakfast" />
+                  <ListView fx:id="results" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </HBox>
          </children>
