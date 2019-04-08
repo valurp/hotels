@@ -22,6 +22,18 @@ public class Booking {
     private Customer customer;
     
 
+    /**
+     * Smiður fyrir Booking, tekur inn ArrayList <Hotelroom> hotelrooms,
+     * int numberOfGuests, LocalDate checkInTime, LocalDate checkOutTime og
+     * Customer customer og býr til bookingId fyrir bókunina. LocalDate breytum
+     * hérna er breytt í String.
+     * @param hotelrooms
+     * @param bookingId
+     * @param numberOfGuests
+     * @param checkInTime
+     * @param checkOutTime
+     * @param customer 
+     */
     public Booking(ArrayList <Hotelroom> hotelrooms, int numberOfGuests, LocalDate checkInTime, LocalDate checkOutTime, Customer customer) {
         this.hotelrooms = hotelrooms;
         this.numberOfGuests = numberOfGuests;
