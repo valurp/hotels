@@ -27,7 +27,6 @@ public class SearchController {
      * @param searchQuery
      * @return 
      */
-    public ArrayList <Hotel> search(SearchQuery searchQuery) {
 
     public ArrayList<Hotel> search(SearchQuery searchQuery) throws SQLException {
 
@@ -49,9 +48,6 @@ public class SearchController {
         }
         return hotelsFound;
     }
-
-}
-
     public static void main(String[] args) throws SQLException {
         SearchController sq = new SearchController();
         LocalDate bDate = LocalDate.of(2019, 04, 05);

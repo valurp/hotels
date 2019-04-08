@@ -6,6 +6,7 @@
 package utlit;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -161,7 +162,7 @@ public class HotelinterfaceController implements Initializable {
     }
     
     @FXML
-    private void searchHandler(ActionEvent event) {
+    private void searchHandler(ActionEvent event) throws SQLException {
         
         SearchQuery searchQuery = new SearchQuery(arrival, departure, city, numberOfGuests, breakfast, minimumRating);
         hotelsFound = searchController.search(searchQuery);
