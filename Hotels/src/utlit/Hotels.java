@@ -6,6 +6,7 @@
 
 package utlit;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -54,6 +55,9 @@ public class Hotels extends Application {
     private MenuItem egilsstadir;
     
     public boolean breakfast;
+    LocalDate arrival;
+    LocalDate departure;
+    String city;
 
     @FXML
     public ListView<String> results;
@@ -78,45 +82,42 @@ public class Hotels extends Application {
         launch(args);
     }
     
-    /**
-     * TODO:
-     * Fá niðurstöður frá SearchPageController og birta í results ListView-inu
-     *
-     */
-    
-
     @FXML
     private void searchHandler(ActionEvent event) {
-        
+        //kalla á SearchPageController með völdum gildum úr arrival, departure og city
     }
 
     @FXML
     private void arrDateHandler(ActionEvent event) {
-        
+        arrival = arrDate.getValue();
     }
 
     @FXML
     private void depDateHandler(ActionEvent event) {
-        
+        departure = depDate.getValue();
     }
 
     @FXML
     private void akSelect(ActionEvent event) {
+        city = "Akureyri";
         Cities.setText("Akureyri");
     }
 
     @FXML
     private void rvkSelect(ActionEvent event) {
+        city = "Reykjavík";
         Cities.setText("Reykjavík");
     }
 
     @FXML
     private void kefSelect(ActionEvent event) {
+        city = "Keflavík";
         Cities.setText("Keflavík");
     }
 
     @FXML
     private void egSelect(ActionEvent event) {
+        city = "Egilsstaðir";
         Cities.setText("Egilsstaðir");
     }
 
@@ -126,5 +127,5 @@ public class Hotels extends Application {
     }
     
     
-    }
+}
 
