@@ -110,7 +110,8 @@ public class API {
         }
     }
     
-    /*public Hotel getHotelInfo(String hotelName) {
+    public Hotel getHotelInfo(String hotelName) {
+        Hotel hotel = new Hotel(hotelName);
         try {
             connection = DriverManager.getConnection(url, user, pass);
             
@@ -119,7 +120,6 @@ public class API {
             
             resultSet = statement.executeQuery();
             
-            Hotel hotel = new Hotel(hotelName);
             
             hotel.setCity(resultSet.getString(2));
             hotel.setEmail(resultSet.getString(3));
@@ -139,7 +139,7 @@ public class API {
             }
             return hotel;
         }
-    }*/
+    }
     
     
     //Tímabundið main fall
