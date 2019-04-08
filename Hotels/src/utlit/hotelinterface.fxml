@@ -16,25 +16,25 @@
                <children>
                   <VBox prefHeight="91.0" prefWidth="189.0">
                      <children>
-                        <DatePicker fx:id="arrDate" />
-                        <DatePicker fx:id="depDate" />
+                        <DatePicker fx:id="arrDate" onAction="#arrDateHandler" />
+                        <DatePicker fx:id="depDate" onAction="#depDateHandler" />
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <MenuButton fx:id="Cities" mnemonicParsing="false" text="Cities">
                                 <items>
-                                  <MenuItem fx:id="akureyri" mnemonicParsing="false" text="Akureyri" />
-                                  <MenuItem fx:id="reykjavik" mnemonicParsing="false" text="Reykjavik" />
-                                    <MenuItem fx:id="keflavik" mnemonicParsing="false" text="Keflavik" />
-                                    <MenuItem fx:id="egilsstadir" mnemonicParsing="false" text="Egilsstaðir" />
+                                  <MenuItem fx:id="akureyri" mnemonicParsing="false" onAction="#akSelect" text="Akureyri" />
+                                  <MenuItem fx:id="reykjavik" mnemonicParsing="false" onAction="#rvkSelect" text="Reykjavik" />
+                                    <MenuItem fx:id="keflavik" mnemonicParsing="false" onAction="#kefSelect" text="Keflavik" />
+                                    <MenuItem fx:id="egilsstadir" mnemonicParsing="false" onAction="#egSelect" text="Egilsstaðir" />
                                 </items>
                               </MenuButton>
-                              <Button fx:id="searchbutton" mnemonicParsing="false" text="Search" />
+                              <Button fx:id="searchbutton" mnemonicParsing="false" onAction="#searchHandler" text="Search" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
-                  <RadioButton fx:id="breakfast" mnemonicParsing="false" text="Breakfast" />
-                  <ListView fx:id="results" prefHeight="200.0" prefWidth="200.0" />
+                  <CheckBox fx:id="breakfastButton" mnemonicParsing="false" onAction="#breakfastButtonHandler" text="Breakfast" />
+                  <ListView fx:id="results" editable="true" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </HBox>
          </children>
