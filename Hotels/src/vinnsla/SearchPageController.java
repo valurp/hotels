@@ -25,7 +25,7 @@ public class SearchPageController implements Comparator<Hotel> {
     public void searchHandler(SearchQuery searchQuery) {
         //Þarf að útfæra
         
-        hotelsFound = searchController.search(searchQuery);
+        //hotelsFound = searchController.search(searchQuery);
     }
     
     private void sortByRating() {

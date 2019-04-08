@@ -145,6 +145,9 @@ public class API {
             statement.setString(1, hotelName);
             
             resultSet = statement.executeQuery();
+            resultSet.next();
+            
+            System.out.println(resultSet.getString(1));
             
             
             hotel.setCity(resultSet.getString(2));
@@ -171,12 +174,23 @@ public class API {
     //Tímabundið main fall
     public static void main(String[] args) throws SQLException {
         API api = new API();
+
+        
+        //Hotel hotel = api.getHotelInfo("Anomaly Hotel");
+        //System.out.println(hotel);
+        //ArrayList<Hotelroom> rooms;
+        //SearchQuery searchQuery = new SearchQuery(LocalDate.of(2019, 04, 05), LocalDate.of(2019, 05, 05), "Reykjavik", 2, true, 0);
+        //rooms = api.getHotelRooms(searchQuery);
+        //System.out.println(rooms);
+        //api.saveBooking(23, "19-04-18", "19-05-18");
+        //api.saveBooking(45, "19-12-03", "19-12-12", 12);
         ArrayList<Hotelroom> rooms;
         LocalDate dateOne = LocalDate.of(2019, Month.APRIL, 9);
         LocalDate dateTwo = LocalDate.of(2019, Month.MAY, 1);
         SearchQuery searchQuery = new SearchQuery(dateOne, dateTwo, "Reykjavik", 2, true, 0);
         rooms = api.getHotelRooms(searchQuery);
         System.out.println(rooms);
+
         
 
         LocalDate inDate = LocalDate.of(2019, Month.JULY, 17);
