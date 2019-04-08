@@ -21,13 +21,8 @@ public class Hotel {
     private boolean breakfastBool;
     private int rating;
 
-    public Hotel(String name, String city, String email, String phoneNumber, boolean breakfastBool, int rating) {
+    public Hotel(String name) {
         this.name = name;
-        this.city = city;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.breakfastBool = breakfastBool;
-        this.rating = rating;
     }
 
     public ArrayList<Hotelroom> getHotelrooms() {
