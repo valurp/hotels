@@ -5,6 +5,7 @@
  */
 package vinnsla;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -16,16 +17,21 @@ import java.util.ArrayList;
 public class BookingController {
     
     private API data;
+
+    public BookingController() throws SQLException {
+        this.data = new API();
+    }
     
     public boolean book(Booking booking) {
         //þarf að útfæra
         return data.saveBooking(booking);
     }
     
-    public static void main (String[] args) {
-        //data = new API();
-        LocalDate inDate = LocalDate.of(2019, Month.JUNE, 7);
-        LocalDate outDate = LocalDate.of(2019, Month.JUNE, 8);
+
+
+    public static void main (String[] args) throws SQLException {
+        LocalDate inDate = LocalDate.of(2019, Month.JUNE, 1);
+        LocalDate outDate = LocalDate.of(2019, Month.JUNE, 5);
         Customer customer = new Customer("Nenni", "nenni@gmail.com");
         Hotelroom hotelroom = new Hotelroom();
         hotelroom.setHotelroomId(2);
@@ -33,7 +39,7 @@ public class BookingController {
         hotelrooms.add(hotelroom);
         Booking booking = new Booking(hotelrooms, 0, 2, inDate, outDate, customer);
         BookingController bk = new BookingController();
-        //bk.book(booking);
+        bk.book(booking);
         System.out.println(booking.getHotelrooms());
         System.out.println(booking.getCheckInTime());
         System.out.println(booking.getCheckOutTime());
