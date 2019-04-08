@@ -20,7 +20,7 @@ public class Booking {
     private String checkInTime;
     private String checkOutTime;
     private Customer customer;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YY/MM/dd");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YY-MM-dd");
 
     public Booking(int bookingId, int numberOfGuests, LocalDate checkInTime, LocalDate checkOutTime, Customer customer) {
         this.bookingId = bookingId;
