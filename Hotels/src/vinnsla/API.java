@@ -175,7 +175,7 @@ public class API {
         hotelrooms.add(hotelroom);
         hotelrooms.add(hotelroomTwo);
         hotelrooms.add(hotelroomThree);
-        Booking booking = new Booking(hotelrooms, 0, 2, inDate, outDate, customer);
+        Booking booking = new Booking(hotelrooms, 2, inDate, outDate, customer);
         if(api.saveBooking(booking)) {
             System.out.println("virkar");
         }

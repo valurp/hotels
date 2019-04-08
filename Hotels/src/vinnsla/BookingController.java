@@ -30,14 +30,14 @@ public class BookingController {
 
 
     public static void main (String[] args) throws SQLException {
-        LocalDate inDate = LocalDate.of(2019, Month.JUNE, 1);
-        LocalDate outDate = LocalDate.of(2019, Month.JUNE, 5);
+        LocalDate inDate = LocalDate.of(2019, Month.JUNE, 17);
+        LocalDate outDate = LocalDate.of(2019, Month.JUNE, 25);
         Customer customer = new Customer("Nenni", "nenni@gmail.com");
         Hotelroom hotelroom = new Hotelroom();
         hotelroom.setHotelroomId(2);
         ArrayList <Hotelroom> hotelrooms = new ArrayList <Hotelroom> ();
         hotelrooms.add(hotelroom);
-        Booking booking = new Booking(hotelrooms, 0, 2, inDate, outDate, customer);
+        Booking booking = new Booking(hotelrooms, 2, inDate, outDate, customer);
         BookingController bk = new BookingController();
         bk.book(booking);
         System.out.println(booking.getHotelrooms());
