@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vinnsla;
 
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -16,26 +13,33 @@ public class SearchController {
     private API data;
     private ArrayList<Hotel> hotelsFound = new ArrayList<Hotel>();
     private ArrayList<Hotelroom> hotelroomsFound = new ArrayList<Hotelroom>();
-    private String currentName = null;
+    private String currentName = "name";
     private Hotel hotel;
     
-    public ArrayList <Hotel> search(SearchQuery searchQuery) {
+    public ArrayList<Hotel> search(SearchQuery searchQuery) throws SQLException {
         // þarf að útfæra
+        data = new API();
         
         hotelroomsFound = data.getHotelRooms(searchQuery);
         
         for (Hotelroom i : hotelroomsFound) {
             String name = i.getHotel();
             if (!currentName.equals(name)) {
-                hotel = new Hotel(name);
+                hotel = data.getHotelInfo(name);
+                
                 hotelsFound.add(hotel);
-                hotel.getHotelrooms().add(i);
             }
-            else {
-                hotel.getHotelrooms().add(i);
-            }
+            
+            hotel.setHotelroom(i);
             currentName = name;
         }
         return hotelsFound;
+    }
+    public static void main(String[] args) throws SQLException {
+        SearchController sq = new SearchController();
+        LocalDate bDate = LocalDate.of(2019, 04, 05);
+        LocalDate eDate = LocalDate.of(2019, 05, 05);
+        ArrayList<Hotel> hotels = sq.search(new SearchQuery(bDate, eDate, "Reykjavik", 2, true, 2));
+        System.out.println(hotels);
     }
 }

@@ -72,6 +72,7 @@ public class HotelinterfaceController implements Initializable {
     LocalDate arrival;
     LocalDate departure;
     String city;
+
     int numberOfGuests;
     int minimumRating;
     SearchController searchController;
