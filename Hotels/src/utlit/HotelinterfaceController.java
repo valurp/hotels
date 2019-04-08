@@ -131,26 +131,31 @@ public class HotelinterfaceController implements Initializable {
 
     @FXML
     private void selectRating1(ActionEvent event) {
+        minRating.setText("1");
         minimumRating = 1;
     }
 
     @FXML
     private void selectRating2(ActionEvent event) {
+        minRating.setText("2");
         minimumRating = 2;
     }
 
     @FXML
     private void selectRating3(ActionEvent event) {
+        minRating.setText("3");
         minimumRating = 3;
     }
 
     @FXML
     private void selectRating4(ActionEvent event) {
+        minRating.setText("4");
         minimumRating = 4;
     }
 
     @FXML
     private void selectRating5(ActionEvent event) {
+        minRating.setText("5");
         minimumRating = 5;
     }
     
