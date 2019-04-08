@@ -7,7 +7,10 @@ package utlit;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +20,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import vinnsla.Hotel;
+import vinnsla.SearchController;
+import vinnsla.SearchQuery;
 
 /**
  * FXML Controller class
@@ -42,14 +49,34 @@ public class HotelinterfaceController implements Initializable {
     @FXML
     private MenuItem egilsstadir;
     @FXML
-    private ListView<?> results;
+    private ListView<String> results;
     @FXML
     private CheckBox breakfastButton;
+    @FXML
+    private TextField noOfGuests;
+    
+    @FXML
+    private MenuButton minRating;
+    @FXML
+    private MenuItem rating1;
+    @FXML
+    private MenuItem rating2;
+    @FXML
+    private MenuItem rating3;
+    @FXML
+    private MenuItem rating4;
+    @FXML
+    private MenuItem rating5;
     
     public boolean breakfast;
     LocalDate arrival;
     LocalDate departure;
     String city;
+    int numberOfGuests;
+    int minimumRating;
+    SearchController searchController;
+    private ArrayList <Hotel> hotelsFound;
+
 
     /**
      * Initializes the controller class.
@@ -69,7 +96,7 @@ public class HotelinterfaceController implements Initializable {
         departure = depDate.getValue();
     }
 
-        @FXML
+    @FXML
     private void akSelect(ActionEvent event) {
         city = "Akureyri";
         Cities.setText("Akureyri");
@@ -92,14 +119,65 @@ public class HotelinterfaceController implements Initializable {
         city = "Egilsstaðir";
         Cities.setText("Egilsstaðir");
     }
-
-    @FXML
-    private void searchHandler(ActionEvent event) {
+    
+    private void getNumberOfGuests(){
+        numberOfGuests = Integer.parseInt(noOfGuests.getText());
     }
-
+    
     @FXML
     private void breakfastButtonHandler(ActionEvent event) {
         breakfast = breakfastButton.isSelected();
+    }
+
+    @FXML
+    private void selectRating1(ActionEvent event) {
+        minRating.setText("1");
+        minimumRating = 1;
+    }
+
+    @FXML
+    private void selectRating2(ActionEvent event) {
+        minRating.setText("2");
+        minimumRating = 2;
+    }
+
+    @FXML
+    private void selectRating3(ActionEvent event) {
+        minRating.setText("3");
+        minimumRating = 3;
+    }
+
+    @FXML
+    private void selectRating4(ActionEvent event) {
+        minRating.setText("4");
+        minimumRating = 4;
+    }
+
+    @FXML
+    private void selectRating5(ActionEvent event) {
+        minRating.setText("5");
+        minimumRating = 5;
+    }
+    
+    @FXML
+    private void searchHandler(ActionEvent event) {
+        
+        SearchQuery searchQuery = new SearchQuery(arrival, departure, city, numberOfGuests, breakfast, minimumRating);
+        hotelsFound = searchController.search(searchQuery);
+  
+        ObservableList<String> hotelsFoundObservable = FXCollections.observableArrayList();
+        
+        //hotelsFound sett í ObservableList
+        for (int i=0; i<hotelsFound.size(); i++) {
+            hotelsFoundObservable.add(i, hotelsFound.get(i).getName());
+        }
+ 
+        results.setItems(hotelsFoundObservable);
+        
+        //Prófun á að bæta hlutum inn í results gluggann - virkar
+        //ObservableList<String> list = FXCollections.observableArrayList("test", "test2");
+        //results.setItems(list);
+        
     }
     
 }

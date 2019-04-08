@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -18,7 +19,13 @@
                      <children>
                         <DatePicker fx:id="arrDate" onAction="#arrDateHandler" />
                         <DatePicker fx:id="depDate" onAction="#depDateHandler" />
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <VBox prefHeight="57.0" prefWidth="189.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of guests:" />
+                              <TextField fx:id="noOfGuests" />
+                           </children>
+                        </VBox>
+                        <HBox prefHeight="31.0" prefWidth="189.0">
                            <children>
                               <MenuButton fx:id="Cities" mnemonicParsing="false" text="Cities">
                                 <items>
@@ -28,6 +35,19 @@
                                     <MenuItem fx:id="egilsstadir" mnemonicParsing="false" onAction="#egSelect" text="Egilsstaðir" />
                                 </items>
                               </MenuButton>
+                              <MenuButton fx:id="minRating" mnemonicParsing="false" text="Minimum rating">
+                                <items>
+                                    <MenuItem fx:id="rating1" mnemonicParsing="false" onAction="#selectRating1" text="1" />
+                                    <MenuItem fx:id="rating2" mnemonicParsing="false" onAction="#selectRating2" text="2" />
+                                  <MenuItem fx:id="rating3" mnemonicParsing="false" onAction="#selectRating3" text="3" />
+                                  <MenuItem fx:id="rating4" mnemonicParsing="false" onAction="#selectRating4" text="4" />
+                                    <MenuItem fx:id="rating5" mnemonicParsing="false" onAction="#selectRating5" text="5" />
+                                </items>
+                              </MenuButton>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
                               <Button fx:id="searchbutton" mnemonicParsing="false" onAction="#searchHandler" text="Search" />
                            </children>
                         </HBox>
