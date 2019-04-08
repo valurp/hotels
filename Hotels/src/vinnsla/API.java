@@ -71,13 +71,19 @@ public class API {
         }
     }
     
-    public ArrayList<Hotelroom> getHotelRooms(String query) {
+    public ArrayList<Hotelroom> getHotelRooms(String city, boolean breakfast, int rating, String bDate, String eDate) {
         ArrayList<Hotelroom> rooms = new ArrayList<>();
         
         try {
             connection = DriverManager.getConnection(url, user, pass);
 
-            statement = connection.prepareStatement(query);
+            statement = connection.prepareStatement("SELECT * FROM hotelroom WHERE hotel IN (SELECT name FROM hotels WHERE city LIKE ? AND breakfast = ? AND rating > ?) AND roomID IN (SELECT roomID FROM dates WHERE avilable = true AND date >= ? AND date <= ?)");
+            statement.setString(1,city);
+            statement.setBoolean(2, breakfast);
+            statement.setInt(3, rating);
+            statement.setString(4, bDate);
+            statement.setString(5, eDate);
+            
             resultSet = statement.executeQuery();
             
             Hotelroom room;
@@ -104,14 +110,46 @@ public class API {
         }
     }
     
+    /*public Hotel getHotelInfo(String hotelName) {
+        try {
+            connection = DriverManager.getConnection(url, user, pass);
+            
+            statement = connection.prepareStatement("SELECT * FROM hotels WHERE name LIKE ?");
+            statement.setString(1, hotelName);
+            
+            resultSet = statement.executeQuery();
+            
+            Hotel hotel = new Hotel(hotelName);
+            
+            hotel.setCity(resultSet.getString(2));
+            hotel.setEmail(resultSet.getString(3));
+            hotel.setPhoneNumber(resultSet.getString(4));
+            hotel.setRating(resultSet.getInt(5));
+            hotel.setBreakfastBoolean(resultSet.getBoolean(6));
+            
+        } catch (Exception e) {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(API.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return hotel;
+        }
+    }*/
+    
     
     //Tímabundið main fall
     public static void main(String[] args) throws SQLException {
         API api = new API();
-        //ArrayList<Hotelroom> rooms;
-        //rooms = api.getHotelRooms("SELECT * FROM hotelroom;");
-        //System.out.println(rooms);
+        ArrayList<Hotelroom> rooms;
+        rooms = api.getHotelRooms("Reykjavik", true, 0, "19-04-09", "19-05-01");
+        System.out.println(rooms);
         //api.saveBooking(23, "19-04-18", "19-05-18");
-        api.saveBooking(45, "19-12-03", "19-12-12", 12);
+        //api.saveBooking(45, "19-12-03", "19-12-12", 12);
+        
     }
 }
