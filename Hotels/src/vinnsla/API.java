@@ -23,6 +23,12 @@ public class API {
         pass = "user";
     }
     
+    /**
+     * Vistar viðskiptavin ásamt bókunar reference í gagnagrunn.
+     * @param name
+     * @param email
+     * @param bookingRef 
+     */
     public void saveCustomer(String name, String email, int bookingRef) {
         try {
             connection = DriverManager.getConnection(url, user, pass);
@@ -47,6 +53,12 @@ public class API {
     }
     
     
+    /**
+     * Vistar bókun í gagnagrunninn og skilar boolean gildi sem segir til um 
+     * hvort það hafi tekist að vista bókunina eða ekki.
+     * @param booking
+     * @return 
+     */
     public boolean saveBooking(Booking booking) {
         try {
 
@@ -79,6 +91,12 @@ public class API {
         }
     }
     
+    /**
+     * Finnur öll hótelherbergi sem eru laus fyrir viðmiðin í searchQuery og
+     * skilar ArrayList <Hotelroom>.
+     * @param searchQuery
+     * @return 
+     */
     public ArrayList<Hotelroom> getHotelRooms(SearchQuery searchQuery) {
         ArrayList<Hotelroom> rooms = new ArrayList<>();
         
@@ -189,7 +207,7 @@ public class API {
         hotelrooms.add(hotelroom);
         hotelrooms.add(hotelroomTwo);
         hotelrooms.add(hotelroomThree);
-        Booking booking = new Booking(hotelrooms, 0, 2, inDate, outDate, customer);
+        Booking booking = new Booking(hotelrooms, 2, inDate, outDate, customer);
         if(api.saveBooking(booking)) {
             System.out.println("virkar");
         }

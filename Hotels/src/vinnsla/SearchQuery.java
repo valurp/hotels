@@ -20,7 +20,18 @@ public class SearchQuery {
     private int numberOfGuests;
     private boolean breakfast;
     private int minRating;
-
+    
+    /**
+     * Smiður fyrir SearchQuery sem tekur inn String checkInDate, String
+     * checkOutDate, String city, int numberOfGuests, boolean breakfast og int
+     * minRating.
+     * @param checkInDate
+     * @param checkOutDate
+     * @param city
+     * @param numberOfGuests
+     * @param breakfast
+     * @param minRating 
+     */
     public SearchQuery(LocalDate checkInDate, LocalDate checkOutDate, String city, int numberOfGuests, boolean breakfast, int minRating) {
         this.checkInDate = checkInDate.toString().substring(2);
         this.checkOutDate = checkOutDate.toString().substring(2);

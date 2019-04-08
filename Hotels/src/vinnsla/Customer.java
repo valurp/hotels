@@ -12,7 +12,12 @@ package vinnsla;
 class Customer {
     private String name;
     private String email;
-
+    
+    /**
+     * Smiður fyrir Customer sem tekur inn String name og String email.
+     * @param name
+     * @param email 
+     */
     public Customer(String name, String email) {
         this.name = name;
         this.email = email;

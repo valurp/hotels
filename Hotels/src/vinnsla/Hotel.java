@@ -20,7 +20,11 @@ public class Hotel {
     private String phoneNumber;
     private boolean breakfastBool;
     private int rating;
-
+    
+    /**
+     * Smiður fyrir Hotel sem tekur inn String name.
+     * @param name 
+     */
     public Hotel(String name) {
         this.name = name;
         this.hotelrooms = new ArrayList<Hotelroom>();
