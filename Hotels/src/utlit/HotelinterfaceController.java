@@ -6,10 +6,13 @@
 package utlit;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
@@ -33,8 +36,6 @@ public class HotelinterfaceController implements Initializable {
     @FXML
     private Button searchbutton;
     @FXML
-    private RadioButton breakfast;
-    @FXML
     private MenuItem akureyri;
     @FXML
     private MenuItem reykjavik;
@@ -44,6 +45,13 @@ public class HotelinterfaceController implements Initializable {
     private MenuItem egilsstadir;
     @FXML
     private ListView<?> results;
+    @FXML
+    private CheckBox breakfastButton;
+    
+    public boolean breakfast;
+    LocalDate arrival;
+    LocalDate departure;
+    String city;
 
     /**
      * Initializes the controller class.
@@ -52,5 +60,48 @@ public class HotelinterfaceController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }  
+
+    @FXML
+    private void arrDateHandler(ActionEvent event) {
+        arrival = arrDate.getValue();
+    }
+
+    @FXML
+    private void depDateHandler(ActionEvent event) {
+        departure = depDate.getValue();
+    }
+
+        @FXML
+    private void akSelect(ActionEvent event) {
+        city = "Akureyri";
+        Cities.setText("Akureyri");
+    }
+
+    @FXML
+    private void rvkSelect(ActionEvent event) {
+        city = "Reykjavík";
+        Cities.setText("Reykjavík");
+    }
+
+    @FXML
+    private void kefSelect(ActionEvent event) {
+        city = "Keflavík";
+        Cities.setText("Keflavík");
+    }
+
+    @FXML
+    private void egSelect(ActionEvent event) {
+        city = "Egilsstaðir";
+        Cities.setText("Egilsstaðir");
+    }
+
+    @FXML
+    private void searchHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void breakfastButtonHandler(ActionEvent event) {
+        breakfast = breakfastButton.isSelected();
+    }
     
 }
