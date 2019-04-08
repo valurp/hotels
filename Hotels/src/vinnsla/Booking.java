@@ -6,6 +6,7 @@
 package vinnsla;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -16,15 +17,16 @@ public class Booking {
     private ArrayList <Hotelroom> hotelrooms;
     private int bookingId;
     private int numberOfGuests;
-    private LocalDate checkInTime;
-    private LocalDate checkOutTime;
+    private String checkInTime;
+    private String checkOutTime;
     private Customer customer;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YY/MM/dd");
 
     public Booking(int bookingId, int numberOfGuests, LocalDate checkInTime, LocalDate checkOutTime, Customer customer) {
         this.bookingId = bookingId;
         this.numberOfGuests = numberOfGuests;
-        this.checkInTime = checkInTime;
-        this.checkOutTime = checkOutTime;
+        this.checkInTime = formatter.format(checkInTime);
+        this.checkOutTime = formatter.format(checkOutTime);
         this.customer = customer;
     }
     
@@ -59,7 +61,7 @@ public class Booking {
     }
 
     public void setCheckInTime(LocalDate checkInTime) {
-        this.checkInTime = checkInTime;
+        this.checkInTime = formatter.format(checkInTime);
     }
 
     public String getCheckOutTime() {
@@ -67,7 +69,7 @@ public class Booking {
     }
 
     public void setCheckOutTime(LocalDate checkOutTime) {
-        this.checkOutTime = checkOutTime;
+        this.checkOutTime = formatter.format(checkOutTime);
     }
 
 
