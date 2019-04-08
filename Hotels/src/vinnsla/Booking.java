@@ -21,7 +21,8 @@ public class Booking {
     private String checkOutTime;
     private Customer customer;
 
-    public Booking(int bookingId, int numberOfGuests, LocalDate checkInTime, LocalDate checkOutTime, Customer customer) {
+    public Booking(ArrayList <Hotelroom> hotelrooms, int bookingId, int numberOfGuests, LocalDate checkInTime, LocalDate checkOutTime, Customer customer) {
+        this.hotelrooms = hotelrooms;
         this.bookingId = bookingId;
         this.numberOfGuests = numberOfGuests;
         this.checkInTime = checkInTime.toString().substring(2);

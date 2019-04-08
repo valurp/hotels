@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *
  * @author Bjartur
  */
-class SearchController {
+public class SearchController {
     
     private API data;
     private ArrayList<Hotel> hotelsFound = new ArrayList<Hotel>();
