@@ -159,8 +159,25 @@ public class API {
         SearchQuery searchQuery = new SearchQuery(dateOne, dateTwo, "Reykjavik", 2, true, 0);
         rooms = api.getHotelRooms(searchQuery);
         System.out.println(rooms);
-        //api.saveBooking(23, "19-04-18", "19-05-18");
-        //api.saveBooking(45, "19-12-03", "19-12-12", 12);
         
+
+        LocalDate inDate = LocalDate.of(2019, Month.JULY, 17);
+        LocalDate outDate = LocalDate.of(2019, Month.JULY, 18);
+        System.out.println(inDate);
+        Customer customer = new Customer("Nenni", "nenni@gmail.com");
+        Hotelroom hotelroom = new Hotelroom();
+        hotelroom.setHotelroomId(2);
+        Hotelroom hotelroomTwo = new Hotelroom();
+        hotelroomTwo.setHotelroomId(3);
+        Hotelroom hotelroomThree = new Hotelroom();
+        hotelroomThree.setHotelroomId(4);
+        ArrayList <Hotelroom> hotelrooms = new ArrayList <Hotelroom> ();
+        hotelrooms.add(hotelroom);
+        hotelrooms.add(hotelroomTwo);
+        hotelrooms.add(hotelroomThree);
+        Booking booking = new Booking(hotelrooms, 0, 2, inDate, outDate, customer);
+        if(api.saveBooking(booking)) {
+            System.out.println("virkar");
+        }
     }
 }
