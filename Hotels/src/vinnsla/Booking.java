@@ -20,13 +20,12 @@ public class Booking {
     private String checkInTime;
     private String checkOutTime;
     private Customer customer;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YY-MM-dd");
 
     public Booking(int bookingId, int numberOfGuests, LocalDate checkInTime, LocalDate checkOutTime, Customer customer) {
         this.bookingId = bookingId;
         this.numberOfGuests = numberOfGuests;
-        this.checkInTime = formatter.format(checkInTime);
-        this.checkOutTime = formatter.format(checkOutTime);
+        this.checkInTime = checkInTime.toString().substring(2);
+        this.checkOutTime = checkOutTime.toString().substring(2);
         this.customer = customer;
     }
     
@@ -61,7 +60,7 @@ public class Booking {
     }
 
     public void setCheckInTime(LocalDate checkInTime) {
-        this.checkInTime = formatter.format(checkInTime);
+        this.checkInTime = checkInTime.toString().substring(2);
     }
 
     public String getCheckOutTime() {
@@ -69,7 +68,7 @@ public class Booking {
     }
 
     public void setCheckOutTime(LocalDate checkOutTime) {
-        this.checkOutTime = formatter.format(checkOutTime);
+        this.checkOutTime = checkOutTime.toString().substring(2);
     }
 
 
