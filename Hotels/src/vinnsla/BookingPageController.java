@@ -16,8 +16,7 @@ public class BookingPageController {
     public boolean tryToBook(Booking booking) {
         //þarf að útfæra
         
-        boolean booked = true;
-        //boolean booked = bookingController.book(booking);
+        boolean booked = bookingController.book(booking);
         return booked;
     }
 }

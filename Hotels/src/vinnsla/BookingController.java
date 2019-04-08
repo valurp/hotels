@@ -5,6 +5,10 @@
  */
 package vinnsla;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ArrayList;
+
 /**
  *
  * @author Bjartur
@@ -15,8 +19,25 @@ public class BookingController {
     
     public boolean book(Booking booking) {
         //þarf að útfæra
-        
-        boolean saved = data.saveBooking(booking);
-        return saved;
+        return data.saveBooking(booking);
+    }
+    
+    public static void main (String[] args) {
+        LocalDate inDate = LocalDate.of(2019, Month.JUNE, 7);
+        LocalDate outDate = LocalDate.of(2019, Month.JUNE, 8);
+        Customer customer = new Customer("Nenni", "nenni@gmail.com");
+        Hotelroom hotelroom = new Hotelroom();
+        hotelroom.setHotelroomId(2);
+        ArrayList <Hotelroom> hotelrooms = new ArrayList <Hotelroom> ();
+        hotelrooms.add(hotelroom);
+        Booking booking = new Booking(hotelrooms, 0, 2, inDate, outDate, customer);
+        BookingController bk = new BookingController();
+        //bk.book(booking);
+        System.out.println(booking.getHotelrooms());
+        System.out.println(booking.getCheckInTime());
+        System.out.println(booking.getCheckOutTime());
+        System.out.println(booking.getCustomer());
+        System.out.println(booking.getBookingNumber());
+        System.out.println(booking.getNumberOfGuests());
     }
 }
