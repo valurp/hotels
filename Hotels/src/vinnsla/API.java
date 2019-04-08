@@ -160,8 +160,8 @@ public class API {
         rooms = api.getHotelRooms(searchQuery);
         System.out.println(rooms);
         
-        LocalDate inDate = LocalDate.of(2019, Month.MAY, 7);
-        LocalDate outDate = LocalDate.of(2019, Month.MAY, 8);
+        LocalDate inDate = LocalDate.of(2019, Month.JUNE, 7);
+        LocalDate outDate = LocalDate.of(2019, Month.JUNE, 8);
         System.out.println(inDate);
         Customer customer = new Customer("Nenni", "nenni@gmail.com");
         Hotelroom hotelroom = new Hotelroom();
@@ -169,11 +169,8 @@ public class API {
         ArrayList <Hotelroom> hotelrooms = new ArrayList <Hotelroom> ();
         hotelrooms.add(hotelroom);
         Booking booking = new Booking(hotelrooms, 0, 2, inDate, outDate, customer);
-        //if(api.saveBooking(booking)) {
+        if(api.saveBooking(booking)) {
             System.out.println("virkar");
-        //}
-        //api.saveBooking(23, "19-04-18", "19-05-18");
-        //api.saveBooking(45, "19-12-03", "19-12-12", 12);
-        
+        }
     }
 }
