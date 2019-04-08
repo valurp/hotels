@@ -14,12 +14,28 @@ import java.util.ArrayList;
 class SearchController {
     
     private API data;
+    private ArrayList<Hotel> hotelsFound = new ArrayList<Hotel>();
+    private ArrayList<Hotelroom> hotelroomsFound = new ArrayList<Hotelroom>();
+    private String currentName = null;
+    private Hotel hotel;
     
-    public ArrayList <Hotel> search(SearchQuery searchquery) {
+    public ArrayList <Hotel> search(SearchQuery searchQuery) {
         // þarf að útfæra
         
-        ArrayList<Hotel> hotels = new ArrayList<Hotel>();
-        //ArrayList<Hotel> hotels = data.getAvailableHotels(searchquery);
-        return hotels;
+        hotelroomsFound = data.getHotelRooms(searchQuery);
+        
+        for (Hotelroom i : hotelroomsFound) {
+            String name = i.getHotel();
+            if (!currentName.equals(name)) {
+                hotel = new Hotel(name);
+                hotelsFound.add(hotel);
+                hotel.getHotelrooms().add(i);
+            }
+            else {
+                hotel.getHotelrooms().add(i);
+            }
+            currentName = name;
+        }
+        return hotelsFound;
     }
 }

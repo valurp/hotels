@@ -16,8 +16,11 @@ import java.util.Comparator;
 public class SearchPageController implements Comparator<Hotel> {
     
     private SearchController searchController;
+    //private ArrayList <Hotelroom> hotelroomsFound;
     private ArrayList <Hotel> hotelsFound;
     private Hotel hotelToBook;
+    //private String currentName = null;
+    //private Hotel hotel;
     
     public void searchHandler(SearchQuery searchQuery) {
         //Þarf að útfæra
