@@ -23,6 +23,7 @@ public class BookingController {
     }
     
     public static void main (String[] args) {
+        //data = new API();
         LocalDate inDate = LocalDate.of(2019, Month.JUNE, 7);
         LocalDate outDate = LocalDate.of(2019, Month.JUNE, 8);
         Customer customer = new Customer("Nenni", "nenni@gmail.com");
