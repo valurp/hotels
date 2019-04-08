@@ -71,18 +71,18 @@ public class API {
         }
     }
     
-    public ArrayList<Hotelroom> getHotelRooms(String city, boolean breakfast, int rating, String bDate, String eDate) {
+    public ArrayList<Hotelroom> getHotelRooms(SearchQuery searchQuery) {
         ArrayList<Hotelroom> rooms = new ArrayList<>();
         
         try {
             connection = DriverManager.getConnection(url, user, pass);
 
             statement = connection.prepareStatement("SELECT * FROM hotelroom WHERE hotel IN (SELECT name FROM hotels WHERE city LIKE ? AND breakfast = ? AND rating > ?) AND roomID IN (SELECT roomID FROM dates WHERE avilable = true AND date >= ? AND date <= ?)");
-            statement.setString(1,city);
-            statement.setBoolean(2, breakfast);
-            statement.setInt(3, rating);
-            statement.setString(4, bDate);
-            statement.setString(5, eDate);
+            statement.setString(1, searchQuery.getCity());
+            statement.setBoolean(2, searchQuery.isBreakfast());
+            statement.setInt(3, searchQuery.getMinRating());
+            statement.setString(4, searchQuery.getCheckInDate());
+            statement.setString(5, searchQuery.getCheckOutDate());
             
             resultSet = statement.executeQuery();
             
@@ -146,7 +146,8 @@ public class API {
     public static void main(String[] args) throws SQLException {
         API api = new API();
         ArrayList<Hotelroom> rooms;
-        rooms = api.getHotelRooms("Reykjavik", true, 0, "19-04-09", "19-05-01");
+        SearchQuery searchQuery = new SearchQuery("19-04-09", "19-05-01", "Reykjavik", 2, true, 0);
+        rooms = api.getHotelRooms(searchQuery);
         System.out.println(rooms);
         //api.saveBooking(23, "19-04-18", "19-05-18");
         //api.saveBooking(45, "19-12-03", "19-12-12", 12);
