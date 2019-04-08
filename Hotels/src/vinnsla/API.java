@@ -45,18 +45,22 @@ public class API {
     }
     
     
-    public void saveBooking(int roomID, String bDate, String eDate, int bookingRef) {
+    public boolean saveBooking(Booking booking) {
         try {
 
             connection = DriverManager.getConnection(url, user, pass);
 
-            statement = connection.prepareStatement("UPDATE dates SET avilable = false, bookingRef = ? WHERE roomID = ? AND date >= ? AND date <= ?");
-            statement.setInt(1, bookingRef);
-            statement.setInt(2, roomID);
-            statement.setString(3, bDate);
-            statement.setString(4, eDate);
+            ArrayList<Hotelroom> hotelrooms = booking.getHotelrooms();
             
-            statement.executeUpdate();
+            for(Hotelroom hotelroom : hotelrooms) {
+                statement = connection.prepareStatement("UPDATE dates SET avilable = false, bookingRef = ? WHERE roomID = ? AND date >= ? AND date <= ?");
+                statement.setInt(1, booking.getBookingNumber());
+                statement.setInt(2, hotelroom.getHotelroomNumber());
+                statement.setString(3, booking.getCheckInTime());
+                statement.setString(4, booking.getCheckOutTime());
+            
+                statement.executeUpdate();
+            }
 
         }catch (Exception e) {
             System.err.println("Got an exception!");
@@ -65,8 +69,10 @@ public class API {
         } finally {
             try {
                 connection.close();
+                return true;
             } catch (SQLException ex) {
                 Logger.getLogger(API.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
             }
         }
     }

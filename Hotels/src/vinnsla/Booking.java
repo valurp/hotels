@@ -54,7 +54,7 @@ public class Booking {
         this.numberOfGuests = numberOfGuests;
     }
 
-    public LocalDate getCheckInTime() {
+    public String getCheckInTime() {
         return checkInTime;
     }
 
@@ -62,7 +62,7 @@ public class Booking {
         this.checkInTime = checkInTime;
     }
 
-    public LocalDate getCheckOutTime() {
+    public String getCheckOutTime() {
         return checkOutTime;
     }
 
