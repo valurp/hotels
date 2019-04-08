@@ -22,6 +22,13 @@ public class BookingController {
         this.data = new API();
     }
     
+    /**
+     * Aðferðin tekur inn Booking hlut og kallar á aðferð sem vistar bókunina í 
+     * gagnagrunninn. Skilar svo boolean gildi hvort það hafi tekist að bóka eða
+     * ekki.
+     * @param booking
+     * @return
+     */    
     public boolean book(Booking booking) {
         //þarf að útfæra
         return data.saveBooking(booking);
