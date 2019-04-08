@@ -1,6 +1,8 @@
 package vinnsla;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -152,7 +154,9 @@ public class API {
     public static void main(String[] args) throws SQLException {
         API api = new API();
         ArrayList<Hotelroom> rooms;
-        SearchQuery searchQuery = new SearchQuery("19-04-09", "19-05-01", "Reykjavik", 2, true, 0);
+        LocalDate dateOne = LocalDate.of(2019, Month.APRIL, 9);
+        LocalDate dateTwo = LocalDate.of(2019, Month.MAY, 1);
+        SearchQuery searchQuery = new SearchQuery(dateOne, dateTwo, "Reykjavik", 2, true, 0);
         rooms = api.getHotelRooms(searchQuery);
         System.out.println(rooms);
         //api.saveBooking(23, "19-04-18", "19-05-18");
