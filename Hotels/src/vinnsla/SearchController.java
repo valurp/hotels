@@ -29,8 +29,6 @@ public class SearchController {
      */
 
     public ArrayList<Hotel> search(SearchQuery searchQuery) throws SQLException {
-
-        // þarf að útfæra
         data = new API();
         
         hotelroomsFound = data.getHotelRooms(searchQuery);
@@ -46,14 +44,14 @@ public class SearchController {
             hotel.setHotelroom(i);
             currentName = name;
         }
+        
+        for (int j = 0; j < hotelsFound.size(); j++) {
+            if (searchQuery.getNumberOfGuests() > hotelsFound.get(j).getHotelrooms().size()*2) {
+                hotelsFound.remove(j);
+            }
+        }
+        
         return hotelsFound;
-    }
-    public static void main(String[] args) throws SQLException {
-        SearchController sq = new SearchController();
-        LocalDate bDate = LocalDate.of(2019, 04, 05);
-        LocalDate eDate = LocalDate.of(2019, 05, 05);
-        ArrayList<Hotel> hotels = sq.search(new SearchQuery(bDate, eDate, "Reykjavik", 2, true, 2));
-        System.out.println(hotels);
     }
 }
 
