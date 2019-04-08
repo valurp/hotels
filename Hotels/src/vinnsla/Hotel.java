@@ -23,14 +23,15 @@ public class Hotel {
 
     public Hotel(String name) {
         this.name = name;
+        this.hotelrooms = new ArrayList<Hotelroom>();
     }
 
     public ArrayList<Hotelroom> getHotelrooms() {
         return hotelrooms;
     }
 
-    public void setHotelrooms(ArrayList<Hotelroom> hotelrooms) {
-        this.hotelrooms = hotelrooms;
+    public void setHotelroom(Hotelroom hotelroom) {
+        this.hotelrooms.add(hotelroom);
     }
 
     public String getName() {

@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author Bjartur
  */
-class SearchQuery {
+public class SearchQuery {
     
     private String checkInDate;
     private String checkOutDate;

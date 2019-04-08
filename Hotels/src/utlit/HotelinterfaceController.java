@@ -50,6 +50,7 @@ public class HotelinterfaceController implements Initializable {
     LocalDate arrival;
     LocalDate departure;
     String city;
+    
 
     /**
      * Initializes the controller class.

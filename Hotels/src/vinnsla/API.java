@@ -1,6 +1,7 @@
 package vinnsla;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -125,6 +126,9 @@ public class API {
             statement.setString(1, hotelName);
             
             resultSet = statement.executeQuery();
+            resultSet.next();
+            
+            System.out.println(resultSet.getString(1));
             
             
             hotel.setCity(resultSet.getString(2));
@@ -151,10 +155,13 @@ public class API {
     //Tímabundið main fall
     public static void main(String[] args) throws SQLException {
         API api = new API();
-        ArrayList<Hotelroom> rooms;
-        SearchQuery searchQuery = new SearchQuery("19-04-09", "19-05-01", "Reykjavik", 2, true, 0);
-        rooms = api.getHotelRooms(searchQuery);
-        System.out.println(rooms);
+        
+        //Hotel hotel = api.getHotelInfo("Anomaly Hotel");
+        //System.out.println(hotel);
+        //ArrayList<Hotelroom> rooms;
+        //SearchQuery searchQuery = new SearchQuery(LocalDate.of(2019, 04, 05), LocalDate.of(2019, 05, 05), "Reykjavik", 2, true, 0);
+        //rooms = api.getHotelRooms(searchQuery);
+        //System.out.println(rooms);
         //api.saveBooking(23, "19-04-18", "19-05-18");
         //api.saveBooking(45, "19-12-03", "19-12-12", 12);
         
