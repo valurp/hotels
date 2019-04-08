@@ -29,14 +29,14 @@ public class API {
      * @param email
      * @param bookingRef 
      */
-    public void saveCustomer(String name, String email, int bookingRef) {
+    public void saveCustomer(Customer customer) {
         try {
             connection = DriverManager.getConnection(url, user, pass);
             
             statement = connection.prepareStatement("INSERT INTO customer VALUES (?, ?, ?)");
-            statement.setString(1, name);
-            statement.setString(2, email);
-            statement.setInt(3, bookingRef);
+            statement.setString(1, customer.getName());
+            statement.setString(2, customer.getEmail());
+            statement.setInt(3, customer.getBookingRef());
             
             statement.executeUpdate();
             
@@ -167,49 +167,6 @@ public class API {
                 Logger.getLogger(API.class.getName()).log(Level.SEVERE, null, ex);
             }
             return hotel;
-        }
-    }
-    
-    
-    //Tímabundið main fall
-    public static void main(String[] args) throws SQLException {
-        API api = new API();
-
-        
-        //Hotel hotel = api.getHotelInfo("Anomaly Hotel");
-        //System.out.println(hotel);
-        //ArrayList<Hotelroom> rooms;
-        //SearchQuery searchQuery = new SearchQuery(LocalDate.of(2019, 04, 05), LocalDate.of(2019, 05, 05), "Reykjavik", 2, true, 0);
-        //rooms = api.getHotelRooms(searchQuery);
-        //System.out.println(rooms);
-        //api.saveBooking(23, "19-04-18", "19-05-18");
-        //api.saveBooking(45, "19-12-03", "19-12-12", 12);
-        ArrayList<Hotelroom> rooms;
-        LocalDate dateOne = LocalDate.of(2019, Month.APRIL, 9);
-        LocalDate dateTwo = LocalDate.of(2019, Month.MAY, 1);
-        SearchQuery searchQuery = new SearchQuery(dateOne, dateTwo, "Reykjavik", 2, true, 0);
-        rooms = api.getHotelRooms(searchQuery);
-        System.out.println(rooms);
-
-        
-
-        LocalDate inDate = LocalDate.of(2019, Month.JULY, 17);
-        LocalDate outDate = LocalDate.of(2019, Month.JULY, 18);
-        System.out.println(inDate);
-        Customer customer = new Customer("Nenni", "nenni@gmail.com");
-        Hotelroom hotelroom = new Hotelroom();
-        hotelroom.setHotelroomId(2);
-        Hotelroom hotelroomTwo = new Hotelroom();
-        hotelroomTwo.setHotelroomId(3);
-        Hotelroom hotelroomThree = new Hotelroom();
-        hotelroomThree.setHotelroomId(4);
-        ArrayList <Hotelroom> hotelrooms = new ArrayList <Hotelroom> ();
-        hotelrooms.add(hotelroom);
-        hotelrooms.add(hotelroomTwo);
-        hotelrooms.add(hotelroomThree);
-        Booking booking = new Booking(hotelrooms, 2, inDate, outDate, customer);
-        if(api.saveBooking(booking)) {
-            System.out.println("virkar");
         }
     }
 }

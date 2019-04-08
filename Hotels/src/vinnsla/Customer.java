@@ -12,6 +12,7 @@ package vinnsla;
 class Customer {
     private String name;
     private String email;
+    private int bookingRef;
     
     /**
      * Smiður fyrir Customer sem tekur inn String name og String email.
@@ -38,4 +39,13 @@ class Customer {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public int getBookingRef() {
+        return bookingRef;
+    }
+
+    public void setBookingRef(int bookingRef) {
+        this.bookingRef = bookingRef;
+    }
+    
 }

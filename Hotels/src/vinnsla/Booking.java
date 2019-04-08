@@ -97,4 +97,8 @@ public class Booking {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+    
+    public void setCustomerBookingRef() {
+        this.customer.setBookingRef(bookingId);
+    }
 }

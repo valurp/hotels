@@ -30,28 +30,12 @@ public class BookingController {
      * @return
      */    
     public boolean book(Booking booking) {
-        //þarf að útfæra
-        return data.saveBooking(booking);
-    }
-    
-
-
-    public static void main (String[] args) throws SQLException {
-        LocalDate inDate = LocalDate.of(2019, Month.JUNE, 17);
-        LocalDate outDate = LocalDate.of(2019, Month.JUNE, 25);
-        Customer customer = new Customer("Nenni", "nenni@gmail.com");
-        Hotelroom hotelroom = new Hotelroom();
-        hotelroom.setHotelroomId(2);
-        ArrayList <Hotelroom> hotelrooms = new ArrayList <Hotelroom> ();
-        hotelrooms.add(hotelroom);
-        Booking booking = new Booking(hotelrooms, 2, inDate, outDate, customer);
-        BookingController bk = new BookingController();
-        bk.book(booking);
-        System.out.println(booking.getHotelrooms());
-        System.out.println(booking.getCheckInTime());
-        System.out.println(booking.getCheckOutTime());
-        System.out.println(booking.getCustomer());
-        System.out.println(booking.getBookingNumber());
-        System.out.println(booking.getNumberOfGuests());
+        boolean successful = false;
+        successful = data.saveBooking(booking);
+        if (successful) {
+            booking.setCustomerBookingRef();
+            data.saveCustomer(booking.getCustomer());
+        }
+        return successful;
     }
 }
