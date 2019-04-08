@@ -6,6 +6,7 @@
 package vinnsla;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -20,9 +21,9 @@ class SearchQuery {
     private boolean breakfast;
     private int minRating;
 
-    public SearchQuery(String checkInDate, String checkOutDate, String city, int numberOfGuests, boolean breakfast, int minRating) {
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
+    public SearchQuery(LocalDate checkInDate, LocalDate checkOutDate, String city, int numberOfGuests, boolean breakfast, int minRating) {
+        this.checkInDate = checkInDate.toString().substring(2);
+        this.checkOutDate = checkOutDate.toString().substring(2);
         this.city = city;
         this.numberOfGuests = numberOfGuests;
         this.breakfast = breakfast;
@@ -33,16 +34,16 @@ class SearchQuery {
         return checkInDate;
     }
 
-    public void setCheckInDate(String checkInDate) {
-        this.checkInDate = checkInDate;
+    public void setCheckInDate(LocalDate checkInDate) {
+        this.checkInDate = checkOutDate.toString().substring(2);
     }
 
     public String getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(String checkOutDate) {
-        this.checkOutDate = checkOutDate;
+    public void setCheckOutDate(LocalDate checkOutDate) {
+        this.checkOutDate = checkOutDate.toString().substring(2);
     }
 
     public String getCity() {
@@ -76,7 +77,4 @@ class SearchQuery {
     public void setMinRating(int minRating) {
         this.minRating = minRating;
     }
-    
-    
-    
 }

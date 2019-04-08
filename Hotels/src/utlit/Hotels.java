@@ -27,18 +27,6 @@ import javafx.stage.Stage;
  */
 public class Hotels extends Application {
    
-    
-    @FXML
-    private DatePicker arrDate;
-    @FXML
-    private DatePicker depDate;
-    @FXML
-    private MenuButton Cities;
-    @FXML
-    private RadioButton breakfast;
-    @FXML
-    private Button searchbutton;
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("hotelinterface.fxml"));
