@@ -2,90 +2,154 @@ package vinnsla;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class API {
     
+    private String url;
     private Connection connection;
-    private Statement statement;
-    private ResultSet result;
+    private PreparedStatement statement;
+    private ResultSet resultSet;
 
     private String user;
     private String pass;
     
-    public API() {
-        connection = null;
-        statement = null;
-        result = null;
-
+    public API() throws SQLException {
+        url = "jdbc:mysql://localhost/hotelsearch";
         user = "user";
         pass = "user";
     }
     
-    /*Drög að getAvailableHotels, tekur núna bara við streng sem fyrirspurnin og nafn dálksins sem á að  skila og skilar ArrayList af strengjum */
-    public ArrayList<String> getAvailableHotels(String query, String queryResult) throws SQLException {
-        ArrayList<String> resultAL = new ArrayList<String>();
-        
+    public void saveCustomer(String name, String email, int bookingRef) {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotelsearch", user, pass);
-
-            statement = connection.createStatement();
-
-            result = statement.executeQuery(query);
-
-            while (result.next()) {
-                //System.out.println(result.getString(queryResult));
-                resultAL.add(result.getString(queryResult));
-            }
-
-        } catch (Exception exc) {
-            exc.printStackTrace();
+            connection = DriverManager.getConnection(url, user, pass);
+            
+            statement = connection.prepareStatement("INSERT INTO customer VALUES (?, ?, ?)");
+            statement.setString(1, name);
+            statement.setString(2, email);
+            statement.setInt(3, bookingRef);
+            
+            statement.executeUpdate();
+            
+        } catch (Exception e) {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
         } finally {
-            if (result != null) {
-                result.close();
-            }
-
-            if (statement != null) {
-                statement.close();
-            }
-
-            if (connection != null) {
+            try {
                 connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(API.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return resultAL;
     }
     
-    public void post(int id, String date, boolean ava, int tala) {
-        try
-        {
-            String myUrl = "jdbc:mysql://localhost/hotelsearch";
-
-            Connection conn = DriverManager.getConnection(myUrl, user, pass);
     
+    public void saveBooking(int roomID, String bDate, String eDate, int bookingRef) {
+        try {
 
-            // mysql insert statement
-            String query = " insert into dates (roomID, date, avilable, bookingRef)" + " values (?, ?, ?, ?)";
+            connection = DriverManager.getConnection(url, user, pass);
 
-            // create the mysql insert preparedstatement
-            PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setInt (1, id);
-            preparedStmt.setString (2, date);
-            preparedStmt.setBoolean   (3, ava);
-            preparedStmt.setInt(4, tala);
+            statement = connection.prepareStatement("UPDATE dates SET avilable = false, bookingRef = ? WHERE roomID = ? AND date >= ? AND date <= ?");
+            statement.setInt(1, bookingRef);
+            statement.setInt(2, roomID);
+            statement.setString(3, bDate);
+            statement.setString(4, eDate);
             
-            // execute the preparedstatement
-            preparedStmt.execute();
-      
-            conn.close();
+            statement.executeUpdate();
+
         }catch (Exception e) {
             System.err.println("Got an exception!");
             System.err.println(e.getMessage());
+
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(API.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
+    
+    public ArrayList<Hotelroom> getHotelRooms(String city, boolean breakfast, int rating, String bDate, String eDate) {
+        ArrayList<Hotelroom> rooms = new ArrayList<>();
+        
+        try {
+            connection = DriverManager.getConnection(url, user, pass);
+
+            statement = connection.prepareStatement("SELECT * FROM hotelroom WHERE hotel IN (SELECT name FROM hotels WHERE city LIKE ? AND breakfast = ? AND rating > ?) AND roomID IN (SELECT roomID FROM dates WHERE avilable = true AND date >= ? AND date <= ?)");
+            statement.setString(1,city);
+            statement.setBoolean(2, breakfast);
+            statement.setInt(3, rating);
+            statement.setString(4, bDate);
+            statement.setString(5, eDate);
+            
+            resultSet = statement.executeQuery();
+            
+            Hotelroom room;
+            
+            while(resultSet.next()){
+                room = new Hotelroom();
+                room.setHotel(resultSet.getString(1));
+                room.setOneNightPrice(resultSet.getInt(3));
+                room.setHotelroomId(resultSet.getInt(4));
+                rooms.add(room);
+            }
+
+        } catch (Exception e) {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(API.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return rooms;
+        }
+    }
+    
+    /*public Hotel getHotelInfo(String hotelName) {
+        try {
+            connection = DriverManager.getConnection(url, user, pass);
+            
+            statement = connection.prepareStatement("SELECT * FROM hotels WHERE name LIKE ?");
+            statement.setString(1, hotelName);
+            
+            resultSet = statement.executeQuery();
+            
+            Hotel hotel = new Hotel(hotelName);
+            
+            hotel.setCity(resultSet.getString(2));
+            hotel.setEmail(resultSet.getString(3));
+            hotel.setPhoneNumber(resultSet.getString(4));
+            hotel.setRating(resultSet.getInt(5));
+            hotel.setBreakfastBoolean(resultSet.getBoolean(6));
+            
+        } catch (Exception e) {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(API.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return hotel;
+        }
+    }*/
+    
     
     //Tímabundið main fall
     public static void main(String[] args) throws SQLException {
         API api = new API();
+        ArrayList<Hotelroom> rooms;
+        rooms = api.getHotelRooms("Reykjavik", true, 0, "19-04-09", "19-05-01");
+        System.out.println(rooms);
+        //api.saveBooking(23, "19-04-18", "19-05-18");
+        //api.saveBooking(45, "19-12-03", "19-12-12", 12);
         
     }
 }
