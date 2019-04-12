@@ -18,10 +18,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import vinnsla.Booking;
+import vinnsla.BookingController;
+import vinnsla.Customer;
 import vinnsla.Hotel;
 import vinnsla.SearchController;
 import vinnsla.SearchQuery;
@@ -78,6 +84,28 @@ public class HotelinterfaceController implements Initializable {
     int minimumRating;
     SearchController searchController;
     private ArrayList <Hotel> hotelsFound;
+    private ObservableList<String> hotelsFoundObservable;
+    private ObservableList<String> birtaValidHotel;
+    private int numerHotels;
+    @FXML
+    private ListView<String> validHotel;
+    @FXML
+    private Label uppl;
+    @FXML
+    private Label nafn;
+    @FXML
+    private Label email;
+    @FXML
+    private TextField nafnInput;
+    @FXML
+    private TextField emailInput;
+    
+    String customerNafn;
+    String customerEmail;
+    @FXML
+    private Button bokaTakki;
+    @FXML
+    private TextArea skilabod;
 
 
     /**
@@ -163,15 +191,16 @@ public class HotelinterfaceController implements Initializable {
     
     @FXML
     private void searchHandler(ActionEvent event) throws SQLException {
-        
+        searchController = new SearchController();
         SearchQuery searchQuery = new SearchQuery(arrival, departure, city, numberOfGuests, breakfast, minimumRating);
         hotelsFound = searchController.search(searchQuery);
   
-        ObservableList<String> hotelsFoundObservable = FXCollections.observableArrayList();
+        hotelsFoundObservable = FXCollections.observableArrayList();
         
         //hotelsFound sett í ObservableList
         for (int i=0; i<hotelsFound.size(); i++) {
             hotelsFoundObservable.add(i, hotelsFound.get(i).getName());
+            System.out.println(hotelsFound.get(i).getName());
         }
  
         results.setItems(hotelsFoundObservable);
@@ -181,5 +210,33 @@ public class HotelinterfaceController implements Initializable {
         //results.setItems(list);
         
     }
+
+    @FXML
+    private void resultsHandler(MouseEvent event) {
+        numerHotels = results.getSelectionModel().getSelectedIndex();
+        System.out.println(numerHotels);
+        birtaValidHotel = FXCollections.observableArrayList();
+        birtaValidHotel.add(0, hotelsFoundObservable.get(numerHotels));
+        validHotel.setItems(birtaValidHotel);
+        uppl.setVisible(true);
+        nafn.setVisible(true);
+        email.setVisible(true);
+        nafnInput.setVisible(true);
+        emailInput.setVisible(true);
+        bokaTakki.setVisible(true);
+        //hotelsFoundObservable.get(numerHotels);
+    }
+
+    @FXML
+    private void bokaTakkiHandler(ActionEvent event) throws SQLException {
+        BookingController bookingController = new BookingController();
+        Customer customer = new Customer(nafnInput.getText(), emailInput.getText());
+        Booking booking = new Booking(hotelsFound.get(numerHotels).getHotelrooms(), numberOfGuests, arrival, departure, customer);
+        bookingController.book(booking);
+        skilabod.setVisible(true);
+        skilabod.setText("Til hanmingju þú hefur bókað hjá " + hotelsFoundObservable.get(numerHotels));
+    }
+    
+    
     
 }
