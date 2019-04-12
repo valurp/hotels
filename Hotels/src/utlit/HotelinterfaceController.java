@@ -83,6 +83,7 @@ public class HotelinterfaceController implements Initializable {
     int numberOfGuests;
     int minimumRating;
     SearchController searchController;
+
     private ArrayList <Hotel> hotelsFound;
     private ObservableList<String> hotelsFoundObservable;
     private ObservableList<String> birtaValidHotel;
@@ -106,7 +107,6 @@ public class HotelinterfaceController implements Initializable {
     private Button bokaTakki;
     @FXML
     private TextArea skilabod;
-
 
     /**
      * Initializes the controller class.
@@ -191,10 +191,12 @@ public class HotelinterfaceController implements Initializable {
     
     @FXML
     private void searchHandler(ActionEvent event) throws SQLException {
+
         searchController = new SearchController();
         SearchQuery searchQuery = new SearchQuery(arrival, departure, city, numberOfGuests, breakfast, minimumRating);
         hotelsFound = searchController.search(searchQuery);
   
+
         hotelsFoundObservable = FXCollections.observableArrayList();
         
         //hotelsFound sett í ObservableList
@@ -204,11 +206,6 @@ public class HotelinterfaceController implements Initializable {
         }
  
         results.setItems(hotelsFoundObservable);
-        
-        //Prófun á að bæta hlutum inn í results gluggann - virkar
-        //ObservableList<String> list = FXCollections.observableArrayList("test", "test2");
-        //results.setItems(list);
-        
     }
 
     @FXML
