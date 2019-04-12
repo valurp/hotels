@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utlit.HotelinterfaceController">
 
    <children>
@@ -54,10 +53,19 @@
                      </children>
                   </VBox>
                   <CheckBox fx:id="breakfastButton" mnemonicParsing="false" onAction="#breakfastButtonHandler" text="Breakfast" />
-                  <ListView fx:id="results" editable="true" prefHeight="200.0" prefWidth="200.0" />
+                  <ListView fx:id="results" editable="true" onMouseClicked="#resultsHandler" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </HBox>
          </children>
       </AnchorPane>
+      <ListView fx:id="validHotel" editable="true" layoutX="489.0" layoutY="39.0" prefHeight="69.0" prefWidth="200.0" />
+      <Label layoutX="507.0" layoutY="22.0" prefHeight="17.0" prefWidth="165.0" text="Valið hótel til bókunnar" />
+      <Label fx:id="uppl" layoutX="581.0" layoutY="233.0" prefHeight="17.0" prefWidth="143.0" text="Upplýsingar um bókanda" visible="false" />
+      <Label fx:id="nafn" layoutX="534.0" layoutY="269.0" prefHeight="17.0" prefWidth="44.0" text="Nafn:" visible="false" />
+      <Label fx:id="email" layoutX="534.0" layoutY="307.0" prefHeight="17.0" prefWidth="44.0" text="Email:" visible="false" />
+      <TextField fx:id="nafnInput" layoutX="578.0" layoutY="265.0" prefHeight="0.0" prefWidth="149.0" visible="false" />
+      <TextField fx:id="emailInput" layoutX="578.0" layoutY="303.0" prefHeight="0.0" prefWidth="149.0" visible="false" />
+      <Button fx:id="bokaTakki" layoutX="627.0" layoutY="375.0" mnemonicParsing="false" onAction="#bokaTakkiHandler" prefHeight="38.0" prefWidth="82.0" text="Bóka" visible="false" />
+      <TextArea fx:id="skilabod" layoutX="517.0" layoutY="425.0" prefHeight="69.0" prefWidth="222.0" visible="false" />
    </children>
 </AnchorPane>

@@ -9,7 +9,7 @@ package vinnsla;
  *
  * @author Bjartur
  */
-class Customer {
+public class Customer {
     private String name;
     private String email;
     private int bookingRef;
