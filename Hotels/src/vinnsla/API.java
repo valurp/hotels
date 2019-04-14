@@ -18,9 +18,9 @@ public class API {
     private String pass;
     
     public API() throws SQLException {
-        url = "jdbc:mysql://localhost/hotelsearch";
-        user = "user";
-        pass = "user";
+        url = "jdbc:mysql://den1.mysql6.gear.host:3306/hotelsearch";
+        user = "hotelsearch";
+        pass = "On8vv_~24O9m";
     }
     
     /**
